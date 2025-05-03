@@ -1,0 +1,68 @@
+* SunlitSparrow - Maccy Database Explorer
+
+SunlitSparrow is a command-line tool for exploring and querying Maccy's clipboard history database. It allows you to view the database schema, list clipboard items, and export data.
+
+** Installation
+
+#+begin_src sh
+go install github.com/gkwa/sunlitsparrow@latest
+#+end_src
+
+** Usage
+
+*** General
+- =sunlitsparrow [command] [flags]=
+- =sunlitsparrow -v=                  # Increase verbosity (-v, -vv, -vvv)
+- =sunlitsparrow --help=              # Show help
+
+*** Schema Commands
+- =sunlitsparrow schema=              # Display database schema
+- =sunlitsparrow schema -o file.sql=  # Export schema to SQL file
+
+*** Item Commands
+- =sunlitsparrow items=               # List recent items (JSON format)
+- =sunlitsparrow items -t=            # List in table format
+- =sunlitsparrow items -l 20=         # Limit to 20 items (default: 10)
+
+*** Pin Commands
+- =sunlitsparrow pins=                # List pinned items (JSON format)
+- =sunlitsparrow pins -t=             # List pinned items in table format
+
+*** Export Commands
+- =sunlitsparrow export=              # Export all items to maccy-export.json
+- =sunlitsparrow export filename.json= # Export all items to specified file
+
+** Examples
+
+View schema with increased verbosity:
+#+begin_src sh
+sunlitsparrow -vvv schema
+#+end_src
+
+Export database schema:
+#+begin_src sh
+sunlitsparrow schema -o maccy_schema.sql
+#+end_src
+
+List recent clipboard items in table format:
+#+begin_src sh
+sunlitsparrow items -t
+#+end_src
+
+List all pinned items:
+#+begin_src sh
+sunlitsparrow pins
+#+end_src
+
+Export all clipboard history:
+#+begin_src sh
+sunlitsparrow export my-clipboard-history.json
+#+end_src
+
+** Features
+
+- Automatically locates Maccy database
+- Works with different database schema versions
+- Handles Cocoa timestamp formats
+- Supports various output formats (JSON, table)
+- Exports data to portable JSON format
